@@ -1,19 +1,17 @@
 pipeline {
-
     agent any
-/*
-	tools {
-        maven "maven3.9"
+
+    tools {
+        maven 'maven3.9' // Make sure this matches what you configured in Jenkins
     }
-*/
+
     environment {
         registry = "base002/vproappdock"
         registryCredential = 'dockerhub'
     }
 
-    stages{
-
-        stage('BUILD'){
+    stages {
+        stage('BUILD') {
             steps {
                 sh 'mvn clean install -DskipTests'
             }
@@ -24,7 +22,8 @@ pipeline {
                 }
             }
         }
-
+    }
+}
         stage('UNIT TEST'){
             steps {
                 sh 'mvn test'
