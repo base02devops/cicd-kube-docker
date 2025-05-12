@@ -1,11 +1,11 @@
 pipeline {
 
-    agent any
-/*
-	tools {
-        mvn "maven3.9"
+ agent {
+    docker {
+        image 'maven:3.9.0-openjdk-17'
+        args '-v /root/.m2:/root/.m2'
     }
-*/
+}
     environment {
         registry = "base002/vproappdock"
         registryCredential = 'dockerhub'
